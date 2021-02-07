@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include 'contact.style.html' %}
+
+<style>
+	#button
+	{
+		max-width: 180px;
+		margin: auto;
+		margin-bottom: 15px;
+	}
+
+	#button button
+	{
+		width: 100%;
+	}
+</style>
+
+<div class="container">
+	<div class="send-message">
+		<h2>Connexion</h2>
+		<form action="{% url 'contact_message' %}" class="commenting-form" method="POST">
+			<div class="row">
+				<div class="form-group col-md-4">
+					{% csrf_token %}
+					<input type="text" name="pseudo" id="pseudo" placeholder="Pseudonyme *" class="form-control" required>
+				</div>
+				<div class="form-group col-md-4">
+					{% csrf_token %}
+					<input type="text" name="password" id="password" placeholder="Mot de passe *" class="form-control" required>
+				</div>
+				<div id="button" class="form-group col-md-3">
+					<button type="submit" class="btn btn-secondary">Se connecter</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock content %}

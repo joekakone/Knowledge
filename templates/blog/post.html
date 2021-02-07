@@ -1,0 +1,111 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+  {% comment %}
+  {% with i=5 %}
+  <p>{{ i }}</p>
+  {% endwith %}
+  {% endcomment %}
+  <div class="row">
+    <!-- Latest Posts -->
+    <main class="post blog-post col-lg-8"> 
+      <div class="container">
+        <div class="post-single">
+          <div class="post-thumbnail"><img src="{{ post.thumbnail.url }}" alt="..." class="img-fluid"></div>
+          <div class="post-details">
+            <div class="post-meta d-flex justify-content-between">
+              <div class="category">
+                {% for cat in post.categories.all %}
+                <a href="{{ cat.get_absolute_url }}">{{ cat }}</a>
+                {% endfor %}
+              </div>
+            </div>
+            <h1>{{ post.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
+            <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#" class="author d-flex align-items-center flex-wrap">
+                <div class="avatar"><img src="{{ post.author.profile_picture.url }}" alt="..." class="img-fluid"></div>
+                <div class="title"><span>{{ post.author.full_name }}</span></div></a>
+              <div class="d-flex align-items-center flex-wrap">       
+                <div class="date"><i class="icon-clock"></i> {{ post.timestamp|timesince }} ago</div>
+                <div class="views"><i class="icon-eye"></i> {{ post.view_count }}</div>
+                <div class="comments meta-last"><i class="icon-comment"></i>{{ post.comment_count }}</div>
+              </div>
+            </div>
+            <div class="post-body">
+              <p class="lead">{{ post.overview }}</p>
+              {% comment %}
+              {{ post.content|safe }}
+              {% endcomment %}
+            </div>
+            <div class="post-tags"><a href="#" class="tag">#Business</a><a href="#" class="tag">#Tricks</a><a href="#" class="tag">#Financial</a><a href="#" class="tag">#Economy</a></div>
+            
+            <div class="posts-nav d-flex justify-content-between align-items-stretch flex-column flex-md-row">
+              {% if post.previous_post %}
+              <a href="{{ post.previous_post.get_absolute_url }}" class="prev-post text-left d-flex align-items-center">
+                <div class="icon prev"><i class="fa fa-angle-left"></i></div>
+                <div class="text"><strong class="text-primary">Article Précédent </strong>
+                  <h6>{{ post.previous_post.title }}</h6>
+                </div>
+              </a>
+              {% endif %}
+
+              {% if post.next_post %}
+                <a href="{{ post.next_post.get_absolute_url }}" class="next-post text-right d-flex align-items-center justify-content-end">
+                <div class="text"><strong class="text-primary">Article Suivant </strong>
+                  <h6>{{ post.next_post.title }}</h6>
+                </div>
+                <div class="icon next"><i class="fa fa-angle-right">   </i></div>
+              </a>
+              {% endif %}
+            </div>
+
+            <!-- Commentaires -->
+            {% include "blog/commentaire.html" %}
+            
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Aside -->
+    {% include "blog/aside.html" %}
+
+  </div>
+</div>
+
+<!-- Latest Posts -->
+<section class="latest-posts"> 
+  <div class="container">
+    <header> 
+      <h2>Articles similaires</h2>
+      <p class="text-big">Quelques articles qui pourraient vous intéresser, jetez un coup d'oeil !</p>
+    </header>
+    <div class="row">
+      {% for obj in latest %}
+      <div class="post col-md-4">
+        <div class="post-thumbnail"><a href="#"><img src="{{ obj.thumbnail.url }}" alt="..." class="img-fluid"></a></div>
+        <div class="post-details">
+          <div class="post-meta d-flex justify-content-between">
+            <div class="date">{{ obj.timestamp }}</div>
+            <div class="category">
+              {% for cat in obj.categories.all %}
+              <a href="{{ cat.get_absolute_url }}">{{ cat }}</a>
+              {% endfor %}
+            </div>
+          </div><a href="{{ obj.get_absolute_url }}">
+            <h3 class="h4">{{ obj.title }}</h3></a>
+          <p class="text-muted">{{ obj.overview }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter Section-->
+{% include "newsletter.html" %}
+
+  
+{% endblock content %}

@@ -1,0 +1,72 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include 'blog/create.style.html' %}
+
+<div class="container">
+	<div class="create-post">
+		<form action="." class="commenting-form" method="POST" enctype="multipart/form-data">
+		    <div class="row">
+		    	<!-- Post Title -->
+		    	<div class="form-group col-md-12">
+		    		{% csrf_token %}
+		    		<input type="text" name="title" id="title" placeholder="Titre de l'article" class="form-control">
+		  		</div>
+		  		<!-- Post Overview -->
+		  		<div class="form-group col-md-12">
+		    		{% csrf_token %}
+		    		<textarea name="overview" id="overview" placeholder="Rédigez un résumé de l'article" class="form-control" rows="6" required></textarea>
+		  		</div>
+		  		<!-- Post Category -->
+		  		<div class="form-group col-md-6">
+		    		{% csrf_token %}
+		    		<select type="choice" name="category" id="category" class="form-control" required>
+		    			{% for cat in categories %}
+		    			<option value="{{ cat }}">{{ cat }}</option>
+		    			{% endfor %}
+		    		</select>
+		  		</div>
+		  		<!-- Post Thumbnail -->
+		  		<div class="form-group col-md-6">
+		    		{% csrf_token %}
+		    		<input type="file" name="thumbnail" id="thumbnail" class="form-control" required>
+		  		</div>
+		  		{% if posts %}
+		  		<!-- Previous Post -->
+		  		<div class="form-group col-md-6">
+		    		{% csrf_token %}
+		    		<select type="choice" name="previous" id="previous" class="form-control" placeholder="Article Précédent" required>
+		    			{% for post in posts %}
+		    			<option value="{{ post }}">{{ post }}</option>
+		    			{% endfor %}
+		    		</select>
+		  		</div>
+		  		{% endif %}
+		  		{% if posts %}
+		  		<!-- Next Post -->
+		  		<div class="form-group col-md-6">
+		    		{% csrf_token %}
+		    		<select type="choice" name="next" id="next" class="form-control" placeholder="Article Suivant" required>
+		    			{% for post in posts %}
+		    			<option value="{{ post }}">{{ post }}</option>
+		    			{% endfor %}
+		    		</select>
+		  		</div>
+		  		{% endif %}
+		    	<div class="form-group col-md-6">
+		    		<button type="submit" class="btn btn-secondary">Enrégistrer</button>
+		  		</div>
+		  		<!--
+		  		<div class="form-group col-md-3">
+		    		<button type="reset" class="btn btn-secondary">Remetrre à zéro</button>
+		  		</div>
+		  		-->
+		    </div>
+		</form> 
+	</div>
+</div>
+{% endblock content %}
+previous_post
+next_post

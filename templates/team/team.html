@@ -1,0 +1,58 @@
+{% extends '../base.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+  #titre
+  {
+    padding: 20px 0 30px 0;
+  }
+</style>
+<div class="container">
+  <div class="heading text-center">
+    <h2 id="titre">Équipe Le Matheux</h2>
+  </div>
+  <div class="col-md-12">
+    <div class="row text-center">
+      <!--
+      <div class="col-md-3">
+        <div data-animate="fadeInUp" class="team-member">
+          <div class="image"><a href="team-member.html"><img src="{% static 'img/person-6.jpg' %}" alt="" class="img-fluid rounded-circle"></a></div>
+          <h3><a href="team-member.html">Joseph Konka</a></h3>
+          <p class="role">Fondateur</p>
+          <ul class="social list-inline">
+            <li class="list-inline-item"><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a></li>
+            <li class="list-inline-item"><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a href="#" class="external linkedin"><i class="fa fa-linkedin"></i></a></li>
+            <li class="list-inline-item"><a href="#" class="email"><i class="fa fa-envelope"></i></a></li>
+          </ul>
+          <div class="text">
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+          </div>
+        </div>
+      </div>
+    -->
+      {% for member in members %}
+      <!-- /.team-member-->
+      <div data-animate="fadeInUp" class="col-md-3">
+        <div class="team-member">
+          <div class="image"><a href="{{ member.get_absolute_url }}"><img src="{{ member.profile_picture.url }}" alt="" class="img-fluid rounded-circle"></a></div>
+          <h3><a href="{{ member.get_absolute_url }}">{{ member }}</a></h3>
+          <p class="role">{% for role in member.roles.all %}{% if not forloop.first %}, {% endif %}{{ role }}{% endfor %}</p>
+          <ul class="social list-inline">
+            <li class="list-inline-item"><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a></li>
+            <li class="list-inline-item"><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a></li>
+            <li class="list-inline-item"><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a href="#" class="email"><i class="fa fa-envelope"></i></a></li>
+          </ul>
+          <div class="text">
+            <p>{{ member.description }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,22 @@
+<!-- Newsletter Section-->
+<section class="newsletter no-padding-top">    
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Abonnez-vous à la Newsletter</h2>
+        <p class="text-big">Pour être informé des nouveaux articles publiés abonnez-vous à la newsletter</p>
+      </div>
+      <div class="col-md-8">
+        <div class="form-holder">
+          <form action="." method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="email" name="email" id="email" placeholder="Entrez votre addresse éléctronique" required>
+              <button type="submit" class="submit">S'abonner</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

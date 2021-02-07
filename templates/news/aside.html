@@ -1,0 +1,20 @@
+<aside class="col-lg-4">
+<!-- Widget [Search Bar Widget]-->
+  <!-- Widget [Latest Posts Widget] -->
+  <div class="widget latest-posts">
+    <header>
+      <h3 class="h6">Latest News</h3>
+    </header>
+    <div class="blog-posts">
+      {% for new in latest %}
+      <a href="{{ news.get_absolute_url }}">
+        <div class="item d-flex align-items-center">
+          <div class="image"><img src="{{ news.thumbnail.url }}" alt="..." class="img-fluid"></div>
+          <div class="title"><strong>{{ news.title }}</strong></div>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>     
+  </div>
+</aside>

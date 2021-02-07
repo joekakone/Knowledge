@@ -1,0 +1,37 @@
+<!-- Divider Section-->
+<section style="background: url({% static 'img/divider-bg.jpg' %}); background-size: cover; background-position: center bottom" class="divider">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</h2><a href="#" class="hero-link">View More</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Latest Subjects -->
+<section class="latest-posts"> 
+  <div class="container">
+    <header> 
+      <h2>Les sujets récement évoqués sur le forum</h2>
+      <p class="text-big">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    </header>
+    <div class="row">
+      {% for obj in latest %}
+      <div class="post col-md-4">
+        <div class="post-details">
+          <div class="post-meta d-flex justify-content-between">
+            <div class="date">{{ obj.timestamp }}</div>
+            <div class="category">
+              {% for cat in obj.categories.all %}
+              <a href="{{ cat.get_absolute_url }}">{{ cat }}</a>
+              {% endfor %}
+            </div>
+          </div><a href="{{ obj.get_absolute_url }}">
+            <h3 class="h4">{{ obj.title }}</h3></a>
+          <p class="text-muted">{{ obj.overview }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

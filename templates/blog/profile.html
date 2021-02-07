@@ -1,0 +1,52 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <!-- Latest Posts -->
+    <main class="post blog-post col-lg-8"> 
+      <div class="container">
+        <div class="post-single">
+          <div class="post-thumbnail"><img src="{{ author.profile_picture.url }}" alt="..." class="img-fluid"></div>
+          <div class="post-details">
+            <h1>{{ author.full_name }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
+            <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#" class="author d-flex align-items-center flex-wrap">
+                <div class="avatar"><img src="{{ post.author.profile_picture.url }}" alt="..." class="img-fluid"></div>
+                <div class="title"><span>{{ post.author.user.username }}</span></div></a>
+              <div class="d-flex align-items-center flex-wrap">       
+                <div class="date"><i class="icon-clock"></i> {{ post.timestamp|timesince }} ago</div>
+                <div class="views"><i class="icon-eye"></i> {{ post.view_count }}</div>
+                <div class="comments meta-last"><i class="icon-comment"></i>{{ post.comment_count }}</div>
+              </div>
+            </div>
+            <div class="post-body">
+              <p class="lead">{{ post.overview }}</p>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              <h3>Lorem Ipsum Dolor</h3>
+              <p>div Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda temporibus iusto voluptates deleniti similique rerum ducimus sint ex odio saepe. Sapiente quae pariatur ratione quis perspiciatis deleniti accusantium</p>
+              <blockquote class="blockquote">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+                <footer class="blockquote-footer">Someone famous in
+                  <cite title="Source Title">Source Title</cite>
+                </footer>
+              </blockquote>
+              <p>quasi nam. Libero dicta eum recusandae, commodi, ad, autem at ea iusto numquam veritatis, officiis. Accusantium optio minus, voluptatem? Quia reprehenderit, veniam quibusdam provident, fugit iusto ullam voluptas neque soluta adipisci ad.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Aside -->
+    {% include "blog/aside.html" %}
+
+  </div>
+
+  <!-- Newsletter Section
+  {% include "newsletter.html" %}-->
+</div>
+  
+{% endblock content %}
